@@ -2,430 +2,411 @@
 const siteTitle = "Civil Film";
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>{siteTitle}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
 <head>
+  <meta charset="utf-8" />
+  <title>{siteTitle}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts (FIX: removed stray quote, added display=swap) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap&family=Raleway:ital,wght@0,100..900;1,100..900" rel="stylesheet""
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
   />
+
+<header class="sticky-brand">
+  <img src="/logo/civilfilm-logo-transp.png" alt="Civil Film" />
+  <div class="brand-text"></div>
+</header>
+
 </head>
 
-
-<section class="hero">
-  <video
-    class="video video-desktop"
-    autoplay
-    muted
-    loop
-    playsinline
-  >
+<!-- HERO VIDEO (was class="hero" before; now separated to avoid CSS conflicts) -->
+<section class="hero-video">
+  <video class="video video-desktop" autoplay muted loop playsinline>
     <source src="/video/hero-desktop.mp4" type="video/mp4" />
   </video>
 
-  <video
-    class="video video-mobile"
-    autoplay
-    muted
-    loop
-    playsinline
-  >
+  <video class="video video-mobile" autoplay muted loop playsinline>
     <source src="/video/hero-mobile.mp4" type="video/mp4" />
   </video>
 
-<div class="hero-logo">
-  <img
-    src="/logo/civilfilm-logo-transp.png"
-    alt="Civil Film"
-  />
-</div>
+  <!-- Text box bottom-left on video -->
+  <div class="hero-box">
+    <p class="hero-text">
+      We collect
+      <span class="move voices">your participants' voices</span>,
+      making your projects
+      <span class="move impact">gain momentum and impact further</span>.
+    </p>
+  </div>
 
-<div class="hero-box">
-  <p>
-    We collect your participants voices, making your projects gain momentum and impact further.
-  </p>
+<div class="ghost-layer">
+  <span class="ghost voices"></span>
+  <span class="ghost impact"></span>
 </div>
 
 </section>
 
+<!-- WELCOME SECTION (was also class="hero" before; now separated) -->
+<section class="hero-intro">
+  <h1>Welcome to Civil Film</h1>
 
+  <p>
+    Civil Film is a film production company dedicated to amplifying voices from
+    civil society. We work with stories that are often unheard, overlooked, or
+    simplified — and give them the space, time, and care they deserve.
+  </p>
 
+  <p>
+    Our work is rooted in the belief that storytelling can bridge experiences,
+    challenge assumptions, and create deeper understanding between people.
+    Through documentary film and visual storytelling, we collaborate closely
+    with communities, organizations, and individuals to tell stories from within,
+    not about.
+  </p>
 
-    <style>
+  <p>
+    We don’t aim to speak for others. We aim to listen — and to create films that
+    reflect the complexity, dignity, and lived realities of the people involved.
+  </p>
+</section>
 
-/* --- Modern CSS Reset (Andy Bell inspired) --- */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+<!-- TESTIMONIES -->
+<section class="section">
+  <h2>Stories & Testimonies</h2>
+  <div class="videos">
+    <iframe
+      src="https://www.youtube.com/embed/ELq8KLaf5hg"
+      title="Testimony 1"
+      allowfullscreen
+    ></iframe>
 
-* {
-  margin: 0;
-}
+    <iframe
+      src="https://www.youtube.com/embed/MZhjid7YO6c"
+      title="Testimony 2"
+      allowfullscreen
+    ></iframe>
 
-html,
-body {
-  height: 100%;
-}
+    <iframe
+      src="https://www.youtube.com/embed/T8Ayl6_zRDY"
+      title="Testimony 3"
+      allowfullscreen
+    ></iframe>
+  </div>
+</section>
 
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-}
+<!-- CONTACT -->
+<footer class="footer">
+  <div class="section">
+    <h2>Contact</h2>
+    <p>Email: erikhansson@civilfilm.com</p>
+    <p>Based in: Sweden, but ready for work worldwide.</p>
+    <p><!-- Instagram / Vimeo / LinkedIn --></p>
+  </div>
+</footer>
 
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-input,
-button,
-textarea,
-select {
-  font: inherit;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-}
-
-:root {
-  --font-body: "Raleway", system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Helvetica, Arial, sans-serif;
-
-  --font-heading: "Shrikhand", Georgia, serif;
-}
-
-/* CSS for Logo on video: */
-
-.hero-logo {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  z-index: 2;
-}
-
-.hero-logo img {
-  height: 200px;
-  width: auto;
-    opacity: 0.9;
-}
-
-@media (max-width: 768px) {
-  .hero-logo {
-    top: 1.25rem;
-    left: 1.25rem;
+<style>
+  /* Reset (kept minimal + safe) */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  * {
+    margin: 0;
+  }
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    font-family: "Raleway", system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    color: #111;
+    background: #fff;
+  }
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
   }
 
-  .hero-logo img {
-    height: 32px;
+  /* Shared layout */
+  .section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
   }
-}
 
-/* CSS for video: */
+  h1,
+  h2 {
+    font-family: "Shrikhand", Georgia, serif;
+    font-weight: 400;
+    line-height: 1.15;
+  }
 
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background: black;
-}
+  /* HERO VIDEO */
+  .hero-video {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+  }
 
-.video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-}
-
-/* Desktop */
-.video-desktop {
-  display: block;
-}
-
-/* Mobile */
-.video-mobile {
-  display: none;
-}
-
-/* Switch videos on small screens */
-@media (max-width: 768px) {
-  .video-desktop {
-    display: none;
+  .video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .video-mobile {
-    display: block;
+    display: none;
   }
+
+  @media (max-width: 768px) {
+    .video-desktop {
+      display: none;
+    }
+    .video-mobile {
+      display: block;
+    }
+  }
+
+  /* Logo on video */
+.hero-logo {
+  position: sticky;
+  top: 2rem;
+  left: 2rem;
+  z-index: 10;
+  align-self: flex-start;
+}
+  .hero-logo img {
+    height: 140px;
+    width: auto;
+    opacity: 0.95;
+  }
+  @media (max-width: 768px) {
+    .hero-logo {
+      top: 1.25rem;
+      left: 1.25rem;
+    }
+    .hero-logo img {
+      height: 56px;
+    }
+  }
+
+  /* Text box on video */
+  .hero-box {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    max-width: 520px;
+    padding: 1.25rem 1.5rem;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+    border-radius: 12px;
+    color: #fff;
+    z-index: 2;
+  }
+  .hero-text {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .hero-text .move {
+    display: inline-block;
+    will-change: transform, opacity;
+  }
+
+  /* WELCOME SECTION */
+  .hero-intro {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 5rem 1.5rem;
+    background: #f4f2ef;
+  }
+  .hero-intro h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    margin-bottom: 1.5rem;
+  }
+  .hero-intro p {
+    font-size: 1.1rem;
+    max-width: 760px;
+    margin-bottom: 1.25rem;
+  }
+
+  /* TESTIMONIES */
+  .section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+  .videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  }
+
+  /* FOOTER */
+  .footer {
+    background: #111;
+    color: #eaeaea;
+  }
+  .footer h2 {
+    color: #fff;
+  }
+  .footer p {
+    color: #d0d0d0;
+    margin: 0.5rem 0;
+  }
+
+.sticky-brand {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 999;
+  pointer-events: none;
+  transform-origin: top left;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-/* CSS for text-box overlaying end of video */
 
-.hero-box {
+.sticky-brand img {
+  height: 140px;
+  width: auto;
+  display: block;
+  opacity: 0.95;
+}
+
+.brand-text {
+  position: relative;
+  margin-left: 1rem;
+  font-family: "Shrikhand", Georgia, serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+
+  opacity: 0;          /* ALLTID osynlig */
+  pointer-events: none;
+}
+
+
+.ghost-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 998;
+}
+
+.ghost {
   position: absolute;
-  bottom: 2.5rem;
-  left: 2.5rem;
-  max-width: 480px;
-  padding: 1.5rem 1.75rem;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(2px);
-  border-radius: 12px;
-  color: #fff;
-  z-index: 2;
-}
-
-.hero-box p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.hero-box strong {
-  font-weight: 500;
-}
-
-
-/* CSS for after video */
-.intro {
-  max-width: 720px;
-  margin: 6rem auto;
-  padding: 0 1.5rem;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.intro h1 {
-  font-size: 2.2rem;
-  margin-bottom: 1.5rem;
-}
-
-/* CSS for site otherwise (non-video): */
-
-	:root {
-  --bg: #f4f2ef;         /* warm, off-white canvas */
-  --text: #1a1a1a;       /* near-black text */
-  --accent: #5f6f52;     /* earthy olive accent */
-  --highlight: #e2c290;  /* soft golden highlight for hero */
-  --dark: #111;           /* footer background */
-}
-
-/* Base */
-body {
-  font-family: var(--font-body);
-  font-size: 16px;
+  font-family: "Shrikhand", Georgia, serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
   color: #111;
-  background: #fff;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  font-weight: 400;
-  line-height: 1.2;
-}
-
-/* Hero / Welcome Section */
-.hero {
-  padding: 8rem 1.5rem;
-  text-align: center;
-  background: linear-gradient(to bottom, var(--highlight), var(--bg));
-}
-
-.hero h1 {
-  font-size: clamp(3rem, 6vw, 5rem);
-  color: var(--accent);
-  margin-bottom: 1rem;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
-  transform: translateY(-10px);
-  animation: slideIn 1s ease forwards;
-}
-
-.hero p {
-  font-size: 1.25rem;
-  max-width: 750px;
-  margin: 1rem auto;
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 1s ease 0.5s forwards;
+  will-change: transform, opacity;
 }
 
-/* Videos Section */
-section h2 {
-  font-size: 2.5rem;
-  color: var(--accent);
-  text-align: center;
-  margin-bottom: 3rem;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
 
-.videos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
-  padding-bottom: 4rem;
-}
 
-iframe {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+</style>
 
-iframe:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
-}
+<script is:inline>
+  const hero = document.querySelector(".hero-video");
+  const brand = document.querySelector(".sticky-brand");
+  const brandText = document.querySelector(".brand-text");
 
-/* Footer / Contact */
-footer {
-  background: var(--dark);
-  color: #eaeaea;
-  padding: 3rem 1.5rem;
-  text-align: center;
-}
+  const sourceVoices = document.querySelector(".hero-text .voices");
+  const sourceImpact = document.querySelector(".hero-text .impact");
 
-footer h2 {
-  color: #fff;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
+  const ghostVoices = document.querySelector(".ghost.voices");
+  const ghostImpact = document.querySelector(".ghost.impact");
 
-footer p {
-  color: #d0d0d0;
-  margin: 0.5rem 0;
-}
+  const voiceText = "Your participants' voices";
+  const impactText = "impact further";
 
-/* Links */
-a {
-  color: var(--accent);
-  text-decoration: none;
-}
+  ghostVoices.textContent = voiceText;
+  ghostImpact.textContent = impactText;
 
-a:hover {
-  text-decoration: underline;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  function clamp(n, min, max) {
+    return Math.min(Math.max(n, min), max);
   }
-}
 
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
+  function lerp(a, b, t) {
+    return a + (b - a) * t;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  let ghostProgress = 0; // 0 → 1, rör sig långsamt
+
+  function update() {
+    if (!hero) return;
+
+    const heroTop = hero.offsetTop;
+    const heroHeight = hero.offsetHeight;
+    const scrollY = window.scrollY;
+
+    const progress = clamp((scrollY - heroTop) / heroHeight, 0, 1);
+
+    /* --- LOGO SCALE --- */
+    const scale = 1 - progress * 0.5;
+    brand.style.transform = `scale(${scale})`;
+
+    /* --- GHOST WORDS --- */
+    const start = 0.8;
+    const end = 1.0;
+
+const targetT = clamp((progress - start) / (end - start), 0, 1);
+
+// slow-follow: spökena hinner ikapp istället för att stressas
+ghostProgress += (targetT - ghostProgress) * 0.08;
+const t = ghostProgress;
+
+    if (t > 0) {
+      const srcV = sourceVoices.getBoundingClientRect();
+      const srcI = sourceImpact.getBoundingClientRect();
+      const target = brandText.getBoundingClientRect();
+
+      ghostVoices.style.opacity = t;
+      ghostImpact.style.opacity = t;
+
+      const vX = lerp(srcV.left, target.left, t);
+      const vY = lerp(srcV.top, target.top, t);
+
+      const iX = lerp(srcI.left, target.left + ghostVoices.offsetWidth + 8, t);
+      const iY = lerp(srcI.top, target.top, t);
+
+      ghostVoices.style.transform = `translate(${vX}px, ${vY}px)`;
+      ghostImpact.style.transform = `translate(${iX}px, ${iY}px)`;
+
+    } else {
+      ghostVoices.style.opacity = 0;
+      ghostImpact.style.opacity = 0;
+    }
+
   }
-}
 
-    </style>
-  </head>
-
-  <body>
-
-    <!-- 1. WELCOME SECTION -->
-    <section class="hero">
-      <h1>Welcome to Civil Film</h1>
-
-      <p>
-        Civil Film is a film production company dedicated to amplifying voices from
-        civil society. We work with stories that are often unheard, overlooked, or
-        simplified — and give them the space, time, and care they deserve.
-      </p>
-
-      <p>
-        Our work is rooted in the belief that storytelling can bridge experiences,
-        challenge assumptions, and create deeper understanding between people.
-        Through documentary film and visual storytelling, we collaborate closely
-        with communities, organizations, and individuals to tell stories from within,
-        not about.
-      </p>
-
-      <p>
-        We don’t aim to speak for others. We aim to listen — and to create films that
-        reflect the complexity, dignity, and lived realities of the people involved.
-      </p>
-    </section>
-
-    <!-- 2. TESTIMONIES / FILMS -->
-    <section>
-      <h2>Stories & Testimonies</h2>
-
-      <div class="videos">
-        <!-- Replace the video IDs with your own -->
-        <iframe
-          src="https://www.youtube.com/embed/ELq8KLaf5hg"
-          title="Testimony 1"
-          allowfullscreen
-        ></iframe>
-
-        <iframe
-          src="https://www.youtube.com/embed/MZhjid7YO6c"
-          title="Testimony 2"
-          allowfullscreen
-        ></iframe>
-
-        <iframe
-          src="https://www.youtube.com/embed/T8Ayl6_zRDY"
-          title="Testimony 3"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </section>
-
-    <!-- 3. CONTACT -->
-    <footer>
-      <section>
-        <h2>Contact</h2>
-
-        <p>
-          Email: erikhansson@civilfilm.com
-        </p>
-
-        <p>
-          Based in: Sweden, but ready for work worldwide.
-        </p>
-
-        <p>
-              <!-- 3. CONTACT Instagram / Vimeo / LinkedIn --> 
-        </p>
-      </section>
-    </footer>
-
-  </body>
-</html>
+  window.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+</script>
