@@ -14,13 +14,15 @@ const siteTitle = "Civil Film";
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
   />
+</head>
 
 <header class="sticky-brand">
   <img src="/logo/civilfilm-logo-transp.png" alt="Civil Film" />
-  <div class="brand-text"></div>
+  <div class="brand-text" aria-hidden="true">
+    <span class="bt-voices"></span>
+    <span class="bt-impact"></span>
+  </div>
 </header>
-
-</head>
 
 <!-- HERO VIDEO (was class="hero" before; now separated to avoid CSS conflicts) -->
 <section class="hero-video">
@@ -49,12 +51,13 @@ const siteTitle = "Civil Film";
 
 </section>
 
+<div class="below-video-bg">
 <!-- WELCOME SECTION (was also class="hero" before; now separated) -->
 <section class="hero-intro">
-  <h1>Welcome to Civil Film</h1>
+  <h1>Welcome to Civilfilm</h1>
 
   <p>
-    Civil Film is a film production company dedicated to amplifying voices from
+    Civilfilm is a film production company dedicated to amplifying voices from
     civil society. We work with stories that are often unheard, overlooked, or
     simplified — and give them the space, time, and care they deserve.
   </p>
@@ -96,18 +99,38 @@ const siteTitle = "Civil Film";
     ></iframe>
   </div>
 </section>
+  
 
-<!-- CONTACT -->
-<footer class="footer">
-  <div class="section">
-    <h2>Contact</h2>
-    <p>Email: erikhansson@civilfilm.com</p>
-    <p>Based in: Sweden, but ready for work worldwide.</p>
-    <p><!-- Instagram / Vimeo / LinkedIn --></p>
+  <section class="section contact-split">
+  <div class="contact-grid">
+    <div class="contact-image">
+      <img src="/logo/pic-erik.jpg" alt="Civilfilm contact" />
+    </div>
+
+    <div class="contact-copy">
+      <h2>Contact</h2>
+
+      <p>
+        Merging anthropology and film is the recipe for Civilfilm. Asking the right
+        questions in the moment of actual experience allows for energetic responses
+        that you want to capture for your project.
+      </p>
+
+      <p>
+        <strong>Contact me at:</strong>
+        <a href="mailto:erikhansson@civilfilm.com">erikhansson@civilfilm.com</a>
+      </p>
+
+      <p>
+        <strong>Based in:</strong> Sweden with a worldwide access-passport.
+      </p>
+    </div>
   </div>
-</footer>
+</section>
+</div>
 
 <style>
+
   /* Reset (kept minimal + safe) */
   *,
   *::before,
@@ -221,6 +244,7 @@ const siteTitle = "Civil Film";
   .hero-text {
     font-size: 1rem;
     line-height: 1.5;
+      font-weight: bold;
   }
   .hero-text .move {
     display: inline-block;
@@ -228,11 +252,37 @@ const siteTitle = "Civil Film";
   }
 
   /* WELCOME SECTION */
+
+.below-video-bg {
+  background-image: url("/logo/welcome-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* optional: nice on desktop */
+  min-height: calc(100vh - 72px); /* optional: ensure presence */
+}
+
+/* Make text readable on top of the image */
+.below-video-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure content sits above overlay */
+.below-video-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+
   .hero-intro {
     max-width: 980px;
     margin: 0 auto;
     padding: 5rem 1.5rem;
-    background: #f4f2ef;
+      background: transparent;
   }
   .hero-intro h1 {
     font-size: clamp(2.2rem, 4vw, 3.2rem);
@@ -242,6 +292,7 @@ const siteTitle = "Civil Film";
     font-size: 1.1rem;
     max-width: 760px;
     margin-bottom: 1.25rem;
+      font-weight: bold;
   }
 
   /* TESTIMONIES */
@@ -262,18 +313,46 @@ const siteTitle = "Civil Film";
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
   }
 
-  /* FOOTER */
-  .footer {
-    background: #111;
-    color: #eaeaea;
+  .contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.contact-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.contact-copy h2 {
+  margin-bottom: 1rem;
+}
+
+.contact-copy p {
+  font-size: 1.1rem;
+  max-width: 60ch;
+  margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.contact-copy a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
-  .footer h2 {
-    color: #fff;
+
+  .contact-copy p {
+    font-size: 1rem;
   }
-  .footer p {
-    color: #d0d0d0;
-    margin: 0.5rem 0;
-  }
+}
+
 
 .sticky-brand {
   position: fixed;
@@ -297,16 +376,38 @@ const siteTitle = "Civil Film";
 }
 
 .brand-text {
-  position: relative;
-  margin-left: 1rem;
-  font-family: "Shrikhand", Georgia, serif;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-
-  opacity: 0;          /* ALLTID osynlig */
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  opacity: 0;           /* invisible anchor */
   pointer-events: none;
+  font-family: "Shrikhand", Georgia, serif;
+  letter-spacing: 0.02em;
 }
+
+.brand-text span {
+  display: block;
+  white-space: nowrap;
+}
+
+/* Desktop sizes */
+@media (min-width: 769px) {
+  .brand-text,
+  .ghost {
+    font-size: 3.15rem;
+    line-height: 0.85;
+  }
+}
+
+/* Mobile sizes */
+@media (max-width: 768px) {
+  .brand-text,
+  .ghost {
+    font-size: 0.9rem;
+    line-height: 1.2;
+  }
+}
+
 
 
 .ghost-layer {
@@ -335,7 +436,10 @@ const siteTitle = "Civil Film";
 <script is:inline>
   const hero = document.querySelector(".hero-video");
   const brand = document.querySelector(".sticky-brand");
+
   const brandText = document.querySelector(".brand-text");
+  const targetVoices = document.querySelector(".bt-voices");
+  const targetImpact = document.querySelector(".bt-impact");
 
   const sourceVoices = document.querySelector(".hero-text .voices");
   const sourceImpact = document.querySelector(".hero-text .impact");
@@ -346,8 +450,13 @@ const siteTitle = "Civil Film";
   const voiceText = "Your participants' voices";
   const impactText = "impact further";
 
-  ghostVoices.textContent = voiceText;
-  ghostImpact.textContent = impactText;
+  // Fill the invisible target lines (anchors)
+  if (targetVoices) targetVoices.textContent = voiceText;
+  if (targetImpact) targetImpact.textContent = impactText;
+
+  // Fill the moving ghosts
+  if (ghostVoices) ghostVoices.textContent = voiceText;
+  if (ghostImpact) ghostImpact.textContent = impactText;
 
   function clamp(n, min, max) {
     return Math.min(Math.max(n, min), max);
@@ -357,10 +466,10 @@ const siteTitle = "Civil Film";
     return a + (b - a) * t;
   }
 
-  let ghostProgress = 0; // 0 → 1, rör sig långsamt
+  let ghostProgress = 0;
 
   function update() {
-    if (!hero) return;
+    if (!hero || !brand || !brandText || !targetVoices || !targetImpact || !sourceVoices || !sourceImpact || !ghostVoices || !ghostImpact) return;
 
     const heroTop = hero.offsetTop;
     const heroHeight = hero.offsetHeight;
@@ -368,42 +477,43 @@ const siteTitle = "Civil Film";
 
     const progress = clamp((scrollY - heroTop) / heroHeight, 0, 1);
 
-    /* --- LOGO SCALE --- */
+    // Logo scale
     const scale = 1 - progress * 0.5;
     brand.style.transform = `scale(${scale})`;
 
-    /* --- GHOST WORDS --- */
+    // Ghost timing
     const start = 0.8;
     const end = 1.0;
+    const targetT = clamp((progress - start) / (end - start), 0, 1);
 
-const targetT = clamp((progress - start) / (end - start), 0, 1);
+    // Smooth follow (slower = more cinematic)
+    ghostProgress += (targetT - ghostProgress) * 0.08;
+    const t = ghostProgress;
 
-// slow-follow: spökena hinner ikapp istället för att stressas
-ghostProgress += (targetT - ghostProgress) * 0.08;
-const t = ghostProgress;
-
-    if (t > 0) {
-      const srcV = sourceVoices.getBoundingClientRect();
-      const srcI = sourceImpact.getBoundingClientRect();
-      const target = brandText.getBoundingClientRect();
-
-      ghostVoices.style.opacity = t;
-      ghostImpact.style.opacity = t;
-
-      const vX = lerp(srcV.left, target.left, t);
-      const vY = lerp(srcV.top, target.top, t);
-
-      const iX = lerp(srcI.left, target.left + ghostVoices.offsetWidth + 8, t);
-      const iY = lerp(srcI.top, target.top, t);
-
-      ghostVoices.style.transform = `translate(${vX}px, ${vY}px)`;
-      ghostImpact.style.transform = `translate(${iX}px, ${iY}px)`;
-
-    } else {
+    if (t <= 0.001) {
       ghostVoices.style.opacity = 0;
       ghostImpact.style.opacity = 0;
+      return;
     }
 
+    const srcV = sourceVoices.getBoundingClientRect();
+    const srcI = sourceImpact.getBoundingClientRect();
+
+    // IMPORTANT: use the two explicit line targets (no guessing line height)
+    const tgtV = targetVoices.getBoundingClientRect();
+    const tgtI = targetImpact.getBoundingClientRect();
+
+    ghostVoices.style.opacity = t;
+    ghostImpact.style.opacity = t;
+
+    const vX = lerp(srcV.left, tgtV.left, t);
+    const vY = lerp(srcV.top, tgtV.top, t);
+
+    const iX = lerp(srcI.left, tgtI.left, t);
+    const iY = lerp(srcI.top, tgtI.top, t);
+
+    ghostVoices.style.transform = `translate(${vX}px, ${vY}px)`;
+    ghostImpact.style.transform = `translate(${iX}px, ${iY}px)`;
   }
 
   window.addEventListener("scroll", update, { passive: true });
