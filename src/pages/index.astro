@@ -266,7 +266,7 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
 /* Make text readable on top of the image */
 .below-video-bg::before {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
@@ -368,13 +368,55 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
   gap: 1rem;
 }
 
-
 .sticky-brand img {
   height: 140px;
   width: auto;
   display: block;
   opacity: 0.95;
 }
+
+/* =========================
+   MOBILE: logo right, text left (HARD separation)
+   ========================= */
+@media (max-width: 768px) {
+  .sticky-brand {
+    top: 1.25rem;
+    right: 1.25rem;
+    left: auto;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 0; /* we control spacing manually */
+
+    transform-origin: top right;
+
+    /* IMPORTANT: reserve space for text */
+    padding-left: 7.5rem;
+  }
+
+  /* TEXT: explicitly positioned LEFT */
+  .brand-text {
+    position: absolute;
+    right: 4.6rem;     /* pushes target further left of logo */
+    top: 20rem;
+
+    width: max-content;
+    max-width: 52vw;   /* prevents landing under logo */
+
+    text-align: right;
+    align-items: flex-end;
+
+    pointer-events: none;
+  }
+
+  /* LOGO */
+  .sticky-brand img {
+    height: 100px;
+    width: auto;
+    flex-shrink: 0;
+  }
+}
+
 
 .brand-text {
   display: flex;
@@ -430,6 +472,10 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
   will-change: transform, opacity;
 }
 
+@media (max-width: 768px) {
+  .ghost-layer { z-index: 9999 !important; }
+  .sticky-brand { z-index: 9990 !important; }
+}
 
 
 </style>
@@ -450,6 +496,8 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
 
   const voiceText = "Your participants' voices";
   const impactText = "impact further";
+
+  const brandImg = document.querySelector(".sticky-brand img");
 
   // Fill the invisible target lines (anchors)
   if (targetVoices) targetVoices.textContent = voiceText;
@@ -500,9 +548,32 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
     const srcV = sourceVoices.getBoundingClientRect();
     const srcI = sourceImpact.getBoundingClientRect();
 
-    // IMPORTANT: use the two explicit line targets (no guessing line height)
-    const tgtV = targetVoices.getBoundingClientRect();
-    const tgtI = targetImpact.getBoundingClientRect();
+let tgtV, tgtI;
+
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+if (isMobile && brandImg) {
+  // Land LEFT of the logo, aligned to its top
+  const img = brandImg.getBoundingClientRect();
+
+  // Measure ghost widths so we can right-align them nicely
+  const vW = ghostVoices.offsetWidth || 120;
+  const iW = ghostImpact.offsetWidth || 120;
+
+  const gap = 10; // space between text and logo
+  const xRightEdge = img.left - gap; // text ends here (left of logo)
+
+  // Use the font-size as "line height"
+  const fontSize = parseFloat(getComputedStyle(ghostVoices).fontSize) || 14;
+  const line = fontSize * 1.15;
+
+  tgtV = { left: xRightEdge - vW, top: img.top };
+  tgtI = { left: xRightEdge - iW, top: img.top + line };
+} else {
+  // Desktop: use the invisible anchors (your current approach)
+  tgtV = targetVoices.getBoundingClientRect();
+  tgtI = targetImpact.getBoundingClientRect();
+}
 
     ghostVoices.style.opacity = t;
     ghostImpact.style.opacity = t;
