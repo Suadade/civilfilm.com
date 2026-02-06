@@ -263,6 +263,10 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
   min-height: calc(100vh - 72px); /* optional: ensure presence */
 }
 
+@media (min-width: 769px) {
+  .below-video-bg { background-attachment: fixed; }
+}
+
 /* Make text readable on top of the image */
 .below-video-bg::before {
   content: "";
@@ -280,10 +284,11 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
 
 @media (max-width: 768px) {
   .below-video-bg {
-    background-image: url("/logo/welcome-background-mob-crop.jpg");
-    background-attachment: scroll; /* VERY important */
+    background-image: url("/logo/welcome-background-mob-crop3.jpg");
+    background-attachment: sticky; /* VERY important */
     background-size: cover;
-    background-position: center top;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 }
 
