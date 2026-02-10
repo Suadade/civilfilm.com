@@ -25,11 +25,13 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
   </div>
 </header>
 
+<div class="site-frame"></div>
+
 <div class="lang-switch">
   <label class="sr-only" for="lang">Language</label>
   <select id="lang" name="lang" onchange="location = this.value;">
-    <option value="/en/" selected>English</option>
-    <option value="/sv/">Svenska</option>
+    <option value="/en/" selected>En</option>
+    <option value="/sv/">Sv</option>
   </select>
 </div>
 
@@ -48,8 +50,7 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
     <p class="hero-text">
       We collect
       <span class="move voices">your participants' voices</span>,
-      making your projects
-      <span class="move impact">gain momentum and impact further</span>.
+      <span class="move impact">making your projects maintain momentum and impact further</span>
     </p>
   </div>
 
@@ -65,7 +66,7 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
 <div class="below-video-bg">
 <!-- WELCOME SECTION (was also class="hero" before; now separated) -->
 <section class="hero-intro">
-  <h1>Welcome to Civilfilm</h1>
+  <h1 class="section-title">Welcome to Civilfilm</h1>
 
   <p>
     Civilfilm is a film production company dedicated to amplifying voices from
@@ -89,7 +90,7 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
 
 <!-- TESTIMONIES -->
 <section class="section">
-  <h2>Stories & Testimonies</h2>
+  <h1 class="section-title">Stories & Testimonies</h2>
   <div class="videos">
     <iframe
       src="https://www.youtube.com/embed/ELq8KLaf5hg"
@@ -115,11 +116,11 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
   <section class="section contact-split">
   <div class="contact-grid">
     <div class="contact-image">
-      <img src="/logo/pic-erik-sacha.jpg" alt="Civilfilm contact" />
+      <img src="/logo/pic-erik2.jpg" alt="Civilfilm contact" />
     </div>
 
     <div class="contact-copy">
-      <h2>Contact</h2>
+      <h1 class="section-title">Contact</h2>
 
       <p>
         Merging anthropology and film is the recipe for Civilfilm. Asking the right
@@ -129,7 +130,7 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
 
       <p>
         <strong>Contact me at:</strong>
-        <a href="mailto:erikhansson@civilfilm.com">erikhansson@civilfilm.com</a>
+        <a href="mailto:erikhansson@civilfilm.com">erikhansson (at) civilfilm.com</a>
       </p>
 
       <p>
@@ -177,6 +178,8 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
     max-width: 980px;
     margin: 0 auto;
     padding: 4rem 1.5rem;
+    color: #1a1a1a;
+
   }
 
   h1,
@@ -186,20 +189,52 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
     line-height: 1.15;
   }
 
-  .lang-switch {
+/* Language switcher base */
+.lang-switch {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 2000;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10000;
+  pointer-events: auto;
 }
 
 .lang-switch select {
   font: inherit;
-  padding: 0.4rem 0.6rem;
+  border: 1px solid rgba(0,0,0,0.15);
   border-radius: 10px;
-  border: 1px solid rgba(0,0,0,0.25);
+  padding: 0.45rem 0.65rem;
   background: rgba(255,255,255,0.75);
   backdrop-filter: blur(8px);
+}
+
+/* Hide the label visually but keep accessibility */
+.lang-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* =========================
+   MOBILE: left side + compact labels
+   ========================= */
+@media (max-width: 768px) {
+  .lang-switch {
+    left: 1.25rem;
+    right: auto;
+    top: 1.25rem;
+  }
+
+  .lang-switch select {
+    padding: 0.35rem 0.5rem;
+    border-radius: 9px;
+    font-size: 0.95rem;
+  }
 }
 
 /* screen-reader only */
@@ -289,11 +324,17 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
     right: 1rem;             /* allow it to breathe symmetrically */
     bottom: 1rem;
 
-    max-width: none;         /* full available width */
-    padding: 0.9rem 1rem;    /* tighter padding */
+    max-width: calc(100vw - 2rem);
+    padding: 0.9rem 1.05rem;    /* tighter padding */
 
     border-radius: 10px;     /* slightly softer */
   }
+
+.hero-box .hero-text {
+  font-size: 0.92rem;
+  line-height: 1.35;
+  text-wrap: balance;
+}
 }
 
 
@@ -301,6 +342,7 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
     font-size: 1rem;
     line-height: 1.5;
     font-weight: bold;
+    color: #d1d1d1;
   }
   .hero-text .move {
     display: inline-block;
@@ -355,7 +397,7 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
   pointer-events: none;
 
   /*background-image: url("/logo/welcome-background.jpg");*/
-      background-color: coral;
+    background: #faf4ea;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -374,7 +416,7 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
 @media (max-width: 768px) {
   .bg-fixed {
     /*background-image: url("/logo/welcome-background-mob-crop.jpg");*/
-    background-color: coral;
+    background: #faf4ea;
     background-position: center 20%;
   }
 }
@@ -383,6 +425,7 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
     max-width: 980px;
     margin: 0 auto;
     padding: 5rem 1.5rem;
+    color: #1a1a1a;
   }
   .hero-intro h1 {
     font-size: clamp(2.2rem, 4vw, 3.2rem);
@@ -576,6 +619,26 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
   .sticky-brand { z-index: 9990 !important; }
 }
 
+/* SITE FRAME */
+.site-frame {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+
+  border: 0.5cm solid #5f6f52;
+}
+
+@media (max-width: 768px) {
+  .site-frame {
+    border-width: 8px;
+  }
+}
+
+.section-title {
+  color: #5f6f52;
+    margin-bottom: 1.75rem;
+}
 
 </style>
 
