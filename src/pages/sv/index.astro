@@ -50,8 +50,8 @@ const siteTitle = "Civilfilm - Era deltagares röster påverkar längre";
     <p class="hero-text">
       Vi samlar in
       <span class="move voices">era deltagares röster</span>,
-      
-      <span class="move impact">så att era projekt behåller momentum och påverkar längre</span>
+      så att era projekt
+      <span class="move impact">behåller momentum och påverkar längre</span>
     </p>
   </div>
 
@@ -323,7 +323,7 @@ const siteTitle = "Civilfilm - Era deltagares röster påverkar längre";
     right: 1rem;             /* allow it to breathe symmetrically */
     bottom: 1rem;
 
-    max-width: calc(100vw - 2rem);
+  max-width: calc(100vw - 2rem);
     padding: 0.9rem 1.05rem;    /* tighter padding */
 
     border-radius: 10px;     /* slightly softer */
@@ -332,9 +332,19 @@ const siteTitle = "Civilfilm - Era deltagares röster påverkar längre";
 .hero-box .hero-text {
   font-size: 0.92rem;
   line-height: 1.35;
-  text-wrap: balance;
-}
 
+  /* IMPORTANT: stop "single-word lines" */
+  text-wrap: normal;
+
+  /* extra safety */
+  overflow-wrap: normal;
+  word-break: normal;
+}
+@supports (text-wrap: pretty) {
+  .hero-box .hero-text {
+    text-wrap: pretty; /* nicer breaks, without the weird balancing */
+  }
+}
 }
 
 
@@ -345,7 +355,6 @@ const siteTitle = "Civilfilm - Era deltagares röster påverkar längre";
 
   .hero-text .move {
     display: inline-block;
-    will-change: transform, opacity;
   }
 
   /* WELCOME SECTION */

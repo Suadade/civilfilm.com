@@ -50,7 +50,8 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
     <p class="hero-text">
       We collect
       <span class="move voices">your participants' voices</span>,
-      <span class="move impact">making your projects maintain momentum and impact further</span>
+      making your projects
+      <span class="move impact">maintain momentum and impact further</span>
     </p>
   </div>
 
@@ -333,7 +334,18 @@ const siteTitle = "Civilfilm - Your participants' voices impact further";
 .hero-box .hero-text {
   font-size: 0.92rem;
   line-height: 1.35;
-  text-wrap: balance;
+
+  /* IMPORTANT: stop "single-word lines" */
+  text-wrap: normal;
+
+  /* extra safety */
+  overflow-wrap: normal;
+  word-break: normal;
+}
+@supports (text-wrap: pretty) {
+  .hero-box .hero-text {
+    text-wrap: pretty; /* nicer breaks, without the weird balancing */
+  }
 }
 }
 
